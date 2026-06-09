@@ -1,0 +1,18 @@
+import cors from'cors'
+import cookieParser from 'cookie-parser';
+import express from 'express'
+import authRouter from './routes/auth.routes.js'
+
+const app = express();
+app.use(cors({
+    origin: "http://localhost:5173", // URL of your React app
+    credentials: true,              // Crucial for sending cookies (JWT)
+}));
+app.use(express.json());
+app.use(cookieParser());
+
+
+app.use('/api/v1/auth',authRouter);
+// app.use('/api/v1/p',)
+
+export { app } 
